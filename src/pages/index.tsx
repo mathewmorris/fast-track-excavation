@@ -196,7 +196,7 @@ export default function Home() {
                 </select>
               </label>
             </div>
-            <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-4 px-8 text-white font-bold w-full mt-10 mb-6" />
+            <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-4 px-8 text-white font-bold w-full md:w-auto mt-10 mb-6" />
             {requestStatus === 'pending' && <p className="text-gray-700">Working on that for you...</p>}
             {requestStatus === 'success' && <p className="text-green-700">We got your request! We'll be in touch!</p>}
             {requestStatus === 'fail' && <p className="text-lg text-white rounded bg-red-700 p-2">Looks like something went wrong on our end. We're looking into it, in the meantime, <a href="mailto:fasttrackexcavation@gmail.com" className="font-bold hover:text-red-500">click here to shoot us an email</a>.</p>}
