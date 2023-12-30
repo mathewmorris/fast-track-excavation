@@ -8,6 +8,7 @@ import anotherServiceImage from '../../public/ditch.jpg';
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+import { useState } from "react";
 
 const schema = z.object({
   firstName: z.string(),
@@ -48,7 +49,9 @@ export const RequestQuoteButton = () => {
 
 export default function Home() {
   const { register, handleSubmit, formState: { errors } } = useForm<Schema>();
+  const [requestStatus, setRequestStatus] = useState<'success'|'fail'|'pending'|'initial'>('initial');
   const onSubmit: SubmitHandler<Schema> = data => {
+    setRequestStatus('pending');
     void fetch('/api/submit-request', {
       method: 'POST',
       headers: {
@@ -59,7 +62,10 @@ export default function Home() {
     }).then((res) => {
       console.log('Response received')
       if (res.status === 200) {
+        setRequestStatus('success')
         console.log('Response succeeded!')
+      } else {
+        setRequestStatus('fail');
       }
     })
   }
@@ -187,6 +193,7 @@ export default function Home() {
               </select>
             </label>
             <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-2 px-4 text-white font-bold mt-5" />
+            <p>{requestStatus}</p>
           </form>
         </section>
       </main>
