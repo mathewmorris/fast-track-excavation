@@ -8,6 +8,7 @@ import anotherServiceImage from '../../public/ditch.jpg';
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+import { useState } from "react";
 
 const schema = z.object({
   firstName: z.string(),
@@ -48,7 +49,9 @@ export const RequestQuoteButton = () => {
 
 export default function Home() {
   const { register, handleSubmit, formState: { errors } } = useForm<Schema>();
+  const [requestStatus, setRequestStatus] = useState<'success'|'fail'|'pending'|'initial'>('initial');
   const onSubmit: SubmitHandler<Schema> = data => {
+    setRequestStatus('pending');
     void fetch('/api/submit-request', {
       method: 'POST',
       headers: {
@@ -59,7 +62,10 @@ export default function Home() {
     }).then((res) => {
       console.log('Response received')
       if (res.status === 200) {
+        setRequestStatus('success')
         console.log('Response succeeded!')
+      } else {
+        setRequestStatus('fail');
       }
     })
   }
@@ -186,7 +192,10 @@ export default function Home() {
                 <option label="Not sure - would like to discuss" value="Not sure - discuss" />
               </select>
             </label>
-            <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-2 px-4 text-white font-bold mt-5" />
+            <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-4 px-8 text-white font-bold w-full mt-10 mb-6" />
+            {requestStatus === 'pending' && <p className="text-gray-700">Working on that for you...</p>}
+            {requestStatus === 'success' && <p className="text-green-700">We got your request! We'll be in touch!</p>}
+            {requestStatus === 'fail' && <p className="text-lg text-white rounded bg-red-700 p-2">Looks like something went wrong on our end. We're looking into it, in the meantime, <a href="mailto:fasttrackexcavation@gmail.com" className="font-bold hover:text-red-500">click here to shoot us an email</a>.</p>}
           </form>
         </section>
       </main>
