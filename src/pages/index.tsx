@@ -99,99 +99,103 @@ export default function Home() {
             <span className="text-gray-500 text-sm">All fields are required</span>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-4">
-            <label htmlFor="firstName" className="flex flex-col mb-1">
-              <span className={`text-orange-500 mb-1 ${errors.firstName ? "text-red-500 font-bold" : null}`}>First Name *</span>
-              <input 
-                {...register('firstName', { required: true })} 
-                aria-invalid={errors.firstName ? true : false} 
-                className={`${errors.firstName ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="lastName" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.lastName ? "text-red-500 font-bold" : null}`}>Last Name *</span>
-              <input {...register('lastName', { required: true })} 
-                aria-invalid={errors.lastName ? true : false} 
-                className={`${errors.lastName ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="email" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.email ? "text-red-500 font-bold" : null}`}>Email *</span>
-              <input {...register('email', { required: true })} 
-                aria-invalid={errors.email ? true : false} 
-                className={`${errors.email ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="phone" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.phone ? "text-red-500 font-bold" : null}`}>Phone *</span>
-              <input {...register('phone', { required: true })} 
-                aria-invalid={errors.phone ? true : false} 
-                className={`${errors.phone ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="bestTime" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.bestTime ? "text-red-500 font-bold" : null}`}>Best time to reach you? *</span>
-              <select {...register('bestTime', { required: true })}
-                aria-invalid={errors.bestTime ? true : false} 
-                className={`${errors.bestTime ? "border-red-500 border-2 rounded" : null}`}
-              >
-                <option label="Select..." value="" />
-                <option label="Text Anytime" value="Text Anytime" />
-                <option label="Call Anytime" value="Call Anytime" />
-                <option label="Text to schedule" value="Text to schedule" />
-                <option label="Call to schedule" value="Call to schedule" />
-              </select>
-            </label>
-            <label htmlFor="preferredCommunication" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.preferredCommunication ? "text-red-500 font-bold" : null}`}>Preferred method of communication *</span>
-              <select {...register('preferredCommunication', { required: true })}
-                aria-invalid={errors.preferredCommunication ? true : false} 
-                className={`${errors.preferredCommunication ? "border-red-500 border-2 rounded" : null}`}
-              >
-                <option label="Select..." value="" />
-                <option label="Phone" value="Phone" />
-                <option label="Email" value="Email" />
-                <option label="Other (see contactless details)" value="Other" />
-              </select>
-            </label>
-            <label htmlFor="contactless" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.contactless ? "text-red-500 font-bold" : null}`}>Contactless? *</span>
-              <select {...register('contactless', { required: true })}
-                aria-invalid={errors.contactless ? true : false} 
-                className={`${errors.contactless ? "border-red-500 border-2 rounded" : null}`}
-              >
-                <option label="Select..." value="" />
-                <option label="In person is okay" value="In Person" />
-                <option label="Let's communicate with minimal contact" value="Contactless" />
-              </select>
-            </label>
-            <label htmlFor="platformPreference" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? *</span>
-              <textarea {...register('platformPreference', { required: true })} 
-                aria-invalid={errors.platformPreference ? true : false} 
-                className={`${errors.platformPreference ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="job" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.job ? "text-red-500 font-bold" : null}`}>What are you looking to do? *</span>
-              <span className="text-gray-500 text-sm">Please tell us as much about your project as you can</span>
-              <textarea {...register('job', { required: true })} 
-                aria-invalid={errors.job ? true : false} 
-                className={`${errors.job ? "border-red-500 border-2 rounded" : null}`}
-              />
-            </label>
-            <label htmlFor="when" className="flex flex-col">
-              <span className={`text-orange-500 ${errors.when ? "text-red-500 font-bold" : null}`}>When would you like this done? *</span>
-              <select {...register('when', { required: true })}
-                aria-invalid={errors.when ? true : false} 
-                className={`${errors.when ? "border-red-500 border-2 rounded" : null}`}
-              >
-                <option label="Select..." value="" />
-                <option label="We are leaking/not flowing - ASAP!" value="ASAP" />
-                <option label="Depending on price - we are ready anytime." value="Depend on Price Anytime" />
-                <option label="This year" value="This year" />
-                <option label="Not sure - would like to discuss" value="Not sure - discuss" />
-              </select>
-            </label>
+            <div className="flex flex-col gap-3">
+              <label htmlFor="firstName" className="flex flex-col mb-1">
+                <span className={`text-orange-500 mb-1 ${errors.firstName ? "text-red-500 font-bold" : null}`}>First Name *</span>
+                <input 
+                  {...register('firstName', { required: true })} 
+                  aria-invalid={errors.firstName ? true : false} 
+                  className={`${errors.firstName ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="lastName" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.lastName ? "text-red-500 font-bold" : null}`}>Last Name *</span>
+                <input {...register('lastName', { required: true })} 
+                  aria-invalid={errors.lastName ? true : false} 
+                  className={`${errors.lastName ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="email" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.email ? "text-red-500 font-bold" : null}`}>Email *</span>
+                <input {...register('email', { required: true })} 
+                  aria-invalid={errors.email ? true : false} 
+                  className={`${errors.email ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="phone" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.phone ? "text-red-500 font-bold" : null}`}>Phone *</span>
+                <input
+                  type="text" 
+                  {...register('phone', { required: true })}
+                  aria-invalid={errors.phone ? true : false} 
+                  className={`${errors.phone ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="bestTime" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.bestTime ? "text-red-500 font-bold" : null}`}>Best time to reach you? *</span>
+                <select {...register('bestTime', { required: true })}
+                  aria-invalid={errors.bestTime ? true : false} 
+                  className={`${errors.bestTime ? "border-red-500 border-2 rounded" : null}`}
+                >
+                  <option label="Select..." value="" />
+                  <option label="Text Anytime" value="Text Anytime" />
+                  <option label="Call Anytime" value="Call Anytime" />
+                  <option label="Text to schedule" value="Text to schedule" />
+                  <option label="Call to schedule" value="Call to schedule" />
+                </select>
+              </label>
+              <label htmlFor="preferredCommunication" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.preferredCommunication ? "text-red-500 font-bold" : null}`}>Preferred method of communication *</span>
+                <select {...register('preferredCommunication', { required: true })}
+                  aria-invalid={errors.preferredCommunication ? true : false} 
+                  className={`${errors.preferredCommunication ? "border-red-500 border-2 rounded" : null}`}
+                >
+                  <option label="Select..." value="" />
+                  <option label="Phone" value="Phone" />
+                  <option label="Email" value="Email" />
+                  <option label="Other (see contactless details)" value="Other" />
+                </select>
+              </label>
+              <label htmlFor="contactless" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.contactless ? "text-red-500 font-bold" : null}`}>Contactless? *</span>
+                <select {...register('contactless', { required: true })}
+                  aria-invalid={errors.contactless ? true : false} 
+                  className={`${errors.contactless ? "border-red-500 border-2 rounded" : null}`}
+                >
+                  <option label="Select..." value="" />
+                  <option label="In person is okay" value="In Person" />
+                  <option label="Let's communicate with minimal contact" value="Contactless" />
+                </select>
+              </label>
+              <label htmlFor="platformPreference" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? *</span>
+                <textarea {...register('platformPreference', { required: true })} 
+                  aria-invalid={errors.platformPreference ? true : false} 
+                  className={`${errors.platformPreference ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="job" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.job ? "text-red-500 font-bold" : null}`}>What are you looking to do? *</span>
+                <span className="text-gray-500 text-sm">Please tell us as much about your project as you can</span>
+                <textarea {...register('job', { required: true })} 
+                  aria-invalid={errors.job ? true : false} 
+                  className={`${errors.job ? "border-red-500 border-2 rounded" : null}`}
+                />
+              </label>
+              <label htmlFor="when" className="flex flex-col">
+                <span className={`text-orange-500 ${errors.when ? "text-red-500 font-bold" : null}`}>When would you like this done? *</span>
+                <select {...register('when', { required: true })}
+                  aria-invalid={errors.when ? true : false} 
+                  className={`${errors.when ? "border-red-500 border-2 rounded" : null}`}
+                >
+                  <option label="Select..." value="" />
+                  <option label="We are leaking/not flowing - ASAP!" value="ASAP" />
+                  <option label="Depending on price - we are ready anytime." value="Depend on Price Anytime" />
+                  <option label="This year" value="This year" />
+                  <option label="Not sure - would like to discuss" value="Not sure - discuss" />
+                </select>
+              </label>
+            </div>
             <input type="submit" className="rounded-full bg-orange-600 hover:bg-orange-500 py-4 px-8 text-white font-bold w-full mt-10 mb-6" />
             {requestStatus === 'pending' && <p className="text-gray-700">Working on that for you...</p>}
             {requestStatus === 'success' && <p className="text-green-700">We got your request! We'll be in touch!</p>}
