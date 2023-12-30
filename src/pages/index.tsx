@@ -22,7 +22,7 @@ const schema = z.object({
   when: z.string(),
 });
 
-type Schema = z.infer<typeof schema>;
+export type Schema = z.infer<typeof schema>;
 
 const ServiceCard = ({ image, alt, text }: { image: StaticImageData, alt: string, text: string }) => {
   return (
@@ -47,14 +47,21 @@ export const RequestQuoteButton = () => {
 }
 
 export default function Home() {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Schema>();
+  const { register, handleSubmit, formState: { errors } } = useForm<Schema>();
   const onSubmit: SubmitHandler<Schema> = data => {
-    console.log(errors);
-    if (isValid) {
-      console.log(data);
-    } else {
-      console.error(data);
-    }
+    void fetch('/api/submit-request', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then((res) => {
+      console.log('Response received')
+      if (res.status === 200) {
+        console.log('Response succeeded!')
+      }
+    })
   }
 
   return (
