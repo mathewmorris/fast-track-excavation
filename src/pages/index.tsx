@@ -91,13 +91,14 @@ export default function Home() {
             <ServiceCard image={anotherServiceImage} alt="ditch" text="Land Clearing" />
           </div>
         </section>
-        <section id="request-quote" className="py-8">
+        <section id="request-quote" className="py-8 w-full md:w-3/4 lg:w-[42rem]">
           <div className="mb-10 text-center">
             <h2 className="text-3xl text-orange-500 font-bold">Request a Quote</h2>
             <span className="text-gray-500 text-sm">All fields are required</span>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-4">
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 gap-3">
+              <div className="md:grid md:grid-cols-2 md:gap-3">
               <label htmlFor="firstName" className="flex flex-col mb-1">
                 <span className={`text-orange-500 mb-1 ${errors.firstName ? "text-red-500 font-bold" : null}`}>First Name *</span>
                 <input 
@@ -107,21 +108,22 @@ export default function Home() {
                 />
               </label>
               <label htmlFor="lastName" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.lastName ? "text-red-500 font-bold" : null}`}>Last Name *</span>
+                <span className={`text-orange-500 mb-1 ${errors.lastName ? "text-red-500 font-bold" : null}`}>Last Name *</span>
                 <input {...register('lastName', { required: true })} 
                   aria-invalid={errors.lastName ? true : false} 
                   className={`${errors.lastName ? "border-red-500 border-2 rounded" : null}`}
                 />
               </label>
+              </div>
               <label htmlFor="email" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.email ? "text-red-500 font-bold" : null}`}>Email *</span>
+                <span className={`text-orange-500 mb-1 ${errors.email ? "text-red-500 font-bold" : null}`}>Email *</span>
                 <input {...register('email', { required: true })} 
                   aria-invalid={errors.email ? true : false} 
                   className={`${errors.email ? "border-red-500 border-2 rounded" : null}`}
                 />
               </label>
               <label htmlFor="phone" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.phone ? "text-red-500 font-bold" : null}`}>Phone *</span>
+                <span className={`text-orange-500 mb-1 ${errors.phone ? "text-red-500 font-bold" : null}`}>Phone *</span>
                 <input
                   type="text" 
                   {...register('phone', { required: true })}
@@ -130,7 +132,7 @@ export default function Home() {
                 />
               </label>
               <label htmlFor="bestTime" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.bestTime ? "text-red-500 font-bold" : null}`}>Best time to reach you? *</span>
+                <span className={`text-orange-500 mb-1 ${errors.bestTime ? "text-red-500 font-bold" : null}`}>Best time to reach you? *</span>
                 <select {...register('bestTime', { required: true })}
                   aria-invalid={errors.bestTime ? true : false} 
                   className={`${errors.bestTime ? "border-red-500 border-2 rounded" : null}`}
@@ -143,7 +145,7 @@ export default function Home() {
                 </select>
               </label>
               <label htmlFor="preferredCommunication" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.preferredCommunication ? "text-red-500 font-bold" : null}`}>Preferred method of communication *</span>
+                <span className={`text-orange-500 mb-1 ${errors.preferredCommunication ? "text-red-500 font-bold" : null}`}>Preferred method of communication *</span>
                 <select {...register('preferredCommunication', { required: true })}
                   aria-invalid={errors.preferredCommunication ? true : false} 
                   className={`${errors.preferredCommunication ? "border-red-500 border-2 rounded" : null}`}
@@ -155,7 +157,7 @@ export default function Home() {
                 </select>
               </label>
               <label htmlFor="contactless" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.contactless ? "text-red-500 font-bold" : null}`}>Contactless? *</span>
+                <span className={`text-orange-500 mb-1 ${errors.contactless ? "text-red-500 font-bold" : null}`}>Contactless? *</span>
                 <select {...register('contactless', { required: true })}
                   aria-invalid={errors.contactless ? true : false} 
                   className={`${errors.contactless ? "border-red-500 border-2 rounded" : null}`}
@@ -166,14 +168,14 @@ export default function Home() {
                 </select>
               </label>
               <label htmlFor="platformPreference" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? *</span>
+                <span className={`text-orange-500 mb-1 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? *</span>
                 <textarea {...register('platformPreference', { required: true })} 
                   aria-invalid={errors.platformPreference ? true : false} 
                   className={`${errors.platformPreference ? "border-red-500 border-2 rounded" : null}`}
                 />
               </label>
               <label htmlFor="job" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.job ? "text-red-500 font-bold" : null}`}>What are you looking to do? *</span>
+                <span className={`text-orange-500 mb-1 ${errors.job ? "text-red-500 font-bold" : null}`}>What are you looking to do? *</span>
                 <span className="text-gray-500 text-sm">Please tell us as much about your project as you can</span>
                 <textarea {...register('job', { required: true })} 
                   aria-invalid={errors.job ? true : false} 
@@ -181,7 +183,7 @@ export default function Home() {
                 />
               </label>
               <label htmlFor="when" className="flex flex-col">
-                <span className={`text-orange-500 ${errors.when ? "text-red-500 font-bold" : null}`}>When would you like this done? *</span>
+                <span className={`text-orange-500 mb-1 ${errors.when ? "text-red-500 font-bold" : null}`}>When would you like this done? *</span>
                 <select {...register('when', { required: true })}
                   aria-invalid={errors.when ? true : false} 
                   className={`${errors.when ? "border-red-500 border-2 rounded" : null}`}
