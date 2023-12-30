@@ -2,9 +2,8 @@ import Head from "next/head";
 import Image, { type StaticImageData } from "next/image";
 
 import excavationImage from '../../public/level.jpg';
+import anotherServiceImage from '../../public/level2.jpg';
 import utilityImage from '../../public/pipes.jpg';
-import serviceImage from '../../public/pipes3.jpg';
-import anotherServiceImage from '../../public/ditch.jpg';
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -27,7 +26,7 @@ export type Schema = z.infer<typeof schema>;
 
 const ServiceCard = ({ image, alt, text }: { image: StaticImageData, alt: string, text: string }) => {
   return (
-    <div className="rounded bg-gray-50 shadow-sm flex flex-1 items-center flex-col justify-center overflow-hidden">
+    <div className="rounded bg-gray-50 shadow-sm flex items-center flex-col justify-center overflow-hidden">
       <div className="h-32 overflow-clip relative">
         <Image src={image} alt={alt} className="-top-8 relative" />
       </div>
@@ -86,11 +85,10 @@ export default function Home() {
         </section>
         <section className="p-8 flex flex-col justify-center">
           <h2 className="text-3xl text-orange-500 font-bold text-center mb-10">Services We Provide</h2>
-          <div className="flex flex-col gap-8">
-            <ServiceCard image={excavationImage} alt="excavation with pipes" text="Excavation" />
-            <ServiceCard image={utilityImage} alt="level ground" text="Utility Repair" />
-            <ServiceCard image={serviceImage} alt="level ground" text="Utility Repair" />
-            <ServiceCard image={anotherServiceImage} alt="level ground" text="Utility Repair" />
+          <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <ServiceCard image={excavationImage} alt="excavation with pipes" text="House Pads and Dirt Work" />
+            <ServiceCard image={utilityImage} alt="level ground" text="Excavation Services" />
+            <ServiceCard image={anotherServiceImage} alt="ditch" text="Land Clearing" />
           </div>
         </section>
         <section id="request-quote" className="py-8">
