@@ -1,9 +1,9 @@
-import { Http2ServerRequest } from 'http2';
+import { type NextApiRequest } from 'next';
 import { createTransport } from 'nodemailer';
 import { env } from 'process';
 
 const transporter = createTransport({
-  host: "smtp.forwardemail.net",
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
@@ -14,16 +14,22 @@ const transporter = createTransport({
 });
 
 // async..await is not allowed in global scope, must use a wrapper
-export default async function sendMail(req) {
-  console.log(req.body);
+export default async function sendMail(req: NextApiRequest) {
+  // Not the best way, but it will work for now.
+  const body: Record<string, string> = req.body as Record<string, string>;
+
   // go over each key/value pair, append to string with \n at end
   let text = "";
 
+  for (const key in req.body) {
+    text += key + ": " + body[key] + " \n";
+  }
+
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: '"Mat 👻" <hello@mathewmorris.com>', // sender address
-    to: "request@mathewmorris.com", // list of receivers
-    subject: "Fast Track Excavation Quote Request", // Subject line
+    from: env.EMAIL_FROM, // sender address
+    to: env.EMAIL_TO, // list of receivers
+    subject: env.EMAIL_SUBJECT, // Subject line
     text, // plain text body
   });
 
