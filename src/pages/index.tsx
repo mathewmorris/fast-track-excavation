@@ -5,7 +5,7 @@ import excavationImage from '../../public/level.jpg';
 import anotherServiceImage from '../../public/level2.jpg';
 import utilityImage from '../../public/pipes.jpg';
 
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 
@@ -47,8 +47,9 @@ export const RequestQuoteButton = () => {
 }
 
 export default function Home() {
-  const { register, handleSubmit, formState: { errors } } = useForm<Schema>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Schema>();
   const [requestStatus, setRequestStatus] = useState<'success'|'fail'|'pending'|'initial'>('initial');
+  const contactLessInput = watch('contactless');
   const onSubmit: SubmitHandler<Schema> = data => {
     setRequestStatus('pending');
     void fetch('/api/submit-request', {
@@ -94,7 +95,7 @@ export default function Home() {
         <section id="request-quote" className="py-8 w-full md:w-3/4 lg:w-[42rem]">
           <div className="mb-10 text-center">
             <h2 className="text-3xl text-orange-500 font-bold">Request a Quote</h2>
-            <span className="text-gray-500 text-sm">All fields are required</span>
+            <span className="text-gray-500 text-sm">* indicates requirement</span>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-4">
             <div className="grid grid-cols-1 gap-3">
@@ -168,10 +169,10 @@ export default function Home() {
                 </select>
               </label>
               <label htmlFor="platformPreference" className="flex flex-col">
-                <span className={`text-orange-500 mb-1 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? *</span>
-                <textarea {...register('platformPreference', { required: true })} 
+                <span className={`text-orange-500 mb-1 ${errors.platformPreference ? "text-red-500 font-bold" : null}`}>Contactless: what platform do you prefer? {contactLessInput === 'Contactless' ? '*' : ''}</span>
+                <textarea {...register('platformPreference', { required: contactLessInput === 'Contactless' })} 
                   aria-invalid={errors.platformPreference ? true : false} 
-                  className={`${errors.platformPreference ? "border-red-500 border-2 rounded" : null}`}
+                  className={`${errors.platformPreference ? "border-red-500 border-2 rounded" : null} min-h-32`}
                 />
               </label>
               <label htmlFor="job" className="flex flex-col">
@@ -179,7 +180,7 @@ export default function Home() {
                 <span className="text-gray-500 text-sm">Please tell us as much about your project as you can</span>
                 <textarea {...register('job', { required: true })} 
                   aria-invalid={errors.job ? true : false} 
-                  className={`${errors.job ? "border-red-500 border-2 rounded" : null}`}
+                  className={`${errors.job ? "border-red-500 border-2 rounded" : null} min-h-32`}
                 />
               </label>
               <label htmlFor="when" className="flex flex-col">
