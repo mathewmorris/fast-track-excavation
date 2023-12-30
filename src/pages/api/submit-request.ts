@@ -12,6 +12,19 @@ const transporter = createTransport({
   },
 });
 
+const keyMapping: Record<string, string> = {
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  email: 'Email',
+  phone: 'Phone Number',
+  bestTime: 'Best Time to contact',
+  preferredCommunication: 'Preferred Method of Communication',
+  contactless: 'Contactless Preference',
+  platformPreference: 'Contactless Platform Preference',
+  job: 'Job Description',
+  when: 'When to be Done',
+}
+
 export default async function sendMail(req: NextApiRequest, res: NextApiResponse) {
   // Not the best way, but it will work for now.
   const body: Record<string, string> = req.body as Record<string, string>;
@@ -19,7 +32,7 @@ export default async function sendMail(req: NextApiRequest, res: NextApiResponse
   let text = "";
 
   for (const key in req.body) {
-    text += key + ": " + body[key] + " \n";
+    text += keyMapping[key] + ": " + body[key] + " \n";
   }
 
   if (env.NODE_ENV === "development") {
