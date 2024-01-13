@@ -26,8 +26,8 @@ export type Schema = z.infer<typeof schema>;
 
 const ServiceCard = ({ image, alt, text }: { image: StaticImageData, alt: string, text: string }) => {
   return (
-    <div className="rounded bg-gray-50 shadow-sm flex items-center flex-col justify-center overflow-hidden">
-      <div className="h-32 overflow-clip relative">
+    <div className="rounded bg-gray-50 shadow-sm flex items-center flex-col justify-center overflow-hidden max-w-[24rem]">
+      <div className="h-48 overflow-clip relative">
         <Image src={image} alt={alt} className="-top-8 relative" />
       </div>
       <h4 className="text-lg p-5">{text}</h4>
