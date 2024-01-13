@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image, { type StaticImageData } from "next/image";
 
-import excavationImage from '../../public/excavation/excavation-01.JPEG';
-import housePadsAndDirtWorkImage from '../../public/excavation/excavation-13.JPEG';
-import trenchingImage from '../../public/excavation/excavation-06.JPEG';
+import excavationImage from '../../public/excavation/excavation-01.jpg';
+import housePadsAndDirtWorkImage from '../../public/excavation/excavation-13.jpg';
+import trenchingImage from '../../public/excavation/excavation-06.jpg';
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
