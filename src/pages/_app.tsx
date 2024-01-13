@@ -5,6 +5,7 @@ import { Roboto } from 'next/font/google';
 import "~/styles/globals.css";
 import excavatorImage from '../../public/excavator.png';
 import Image from "next/image";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 
 const roboto = Roboto({
   weight: ['400', '700', '900'],
@@ -25,6 +26,14 @@ const MyApp: AppType = ({ Component, pageProps }) => {
             </div>
           </div>
         </Link>
+        <div className="text-right sm:hidden">
+          <a className="flex justify-between gap-2 p-2 bg-white/10 rounded-full mb-2" href="tel:405-555-5555">Call Us<PhoneIcon className="h-6"/></a>
+          <a className="flex justify-end gap-2 p-2 bg-white/10 rounded-full" href="mailto:fasttrackexcavation@gmail.com">Email Us<EnvelopeIcon className="h-6"/></a>
+        </div>
+        <div className="text-right hidden sm:block">
+          <p>Call us at <a className="hover:text-red-500" href="tel:405-555-5555">405-555-5555</a></p>
+          <p>Email us at <a className="hover:text-red-500" href="mailto:fasttrackexcavation@gmail.com">fasttrackexcavation@gmail.com</a></p>
+        </div>
       </nav>
       <Component {...pageProps} />
       <footer className="p-8 bg-gray-900">
