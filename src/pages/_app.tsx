@@ -27,11 +27,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           </div>
         </Link>
         <div className="text-right sm:hidden">
-          <a className="flex justify-between gap-2 p-2 bg-white/10 rounded-full mb-2" href="tel:405-555-5555">Call Us<PhoneIcon className="h-6"/></a>
+          <a className="flex justify-between gap-2 p-2 bg-white/10 rounded-full mb-2" href="tel:405-664-6362">Call Us<PhoneIcon className="h-6"/></a>
           <a className="flex justify-end gap-2 p-2 bg-white/10 rounded-full" href="mailto:fasttrackexcavation@gmail.com">Email Us<EnvelopeIcon className="h-6"/></a>
         </div>
         <div className="text-right hidden sm:block">
-          <p>Call us at <a className="hover:text-red-500" href="tel:405-555-5555">405-555-5555</a></p>
+          <p>Call us at <a className="hover:text-red-500" href="tel:405-664-6362">405-664-6362</a></p>
           <p>Email us at <a className="hover:text-red-500" href="mailto:fasttrackexcavation@gmail.com">fasttrackexcavation@gmail.com</a></p>
         </div>
       </nav>
