@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Image, { type StaticImageData } from "next/image";
 
-import excavationImage from '../../public/level.jpg';
-import anotherServiceImage from '../../public/level2.jpg';
-import utilityImage from '../../public/pipes.jpg';
+import excavationImage from '../../public/excavation/excavation-01.JPEG';
+import housePadsAndDirtWorkImage from '../../public/excavation/excavation-13.JPEG';
+import trenchingImage from '../../public/excavation/excavation-06.JPEG';
 
-import { useForm, type SubmitHandler, useWatch } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 
@@ -87,9 +87,9 @@ export default function Home() {
         <section className="p-8 flex flex-col justify-center">
           <h2 className="text-3xl text-red-500 font-bold text-center mb-10">Services We Provide</h2>
           <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <ServiceCard image={excavationImage} alt="excavation with pipes" text="House Pads and Dirt Work" />
-            <ServiceCard image={utilityImage} alt="level ground" text="Excavation Services" />
-            <ServiceCard image={anotherServiceImage} alt="ditch" text="Land Clearing" />
+            <ServiceCard image={housePadsAndDirtWorkImage} alt="excavation with pipes" text="House Pads and Dirt Work" />
+            <ServiceCard image={excavationImage} alt="level ground" text="Excavation Services" />
+            <ServiceCard image={trenchingImage} alt="ditch" text="Trenching" />
           </div>
         </section>
         <section id="request-quote" className="py-8 w-full md:w-3/4 lg:w-[42rem]">
